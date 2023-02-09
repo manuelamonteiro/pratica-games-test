@@ -15,7 +15,7 @@ datasource db {
 model Game {
   id        Int     @id @default(autoincrement())
   title     String  @unique
-  Console   Console @relation(fields: [consoleId], references: [id])
+  Console   Console @relation(fields: [consoleId], references: [id], onDelete: Cascade)
   consoleId Int
 }
 

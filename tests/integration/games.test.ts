@@ -63,14 +63,10 @@ describe("/games ROUTE", () => {
         it("Should respond with status 201 and valid body; valid partition", async () => {
             const consoles = await createFConsole();
             
-            const generateBody = () => ({
+            const response = await server.post("/games").send({
                 title: faker.name.fullName(),
                 consoleId: consoles.id
             });
-            
-            const body = generateBody();
-            
-            const response = await server.post("/games").send(body);
             expect(response.status).toBe(httpStatus.CREATED);
         })
     });

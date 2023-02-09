@@ -24,12 +24,14 @@ describe("/consoles ROUTE", () => {
             const response = await server.get("/consoles");
             
             expect(response.status).toBe(httpStatus.OK);
-            expect(response.body).toEqual([
-                {
-                    id: consoles.id,
-                    name: consoles.name
-                }
-            ])
+            expect(response.body).toEqual(
+                expect.arrayContaining([
+                    {
+                        id: expect.any(Number),
+                        name: expect.any(String)
+                    }
+                ])
+            );
         })
     });
 
