@@ -1,10 +1,10 @@
 import { faker } from "@faker-js/faker";
 import prisma from "config/database";
 
-async function createGame(consoleId: number) {
+export async function createFGame(consoleId: number) {
     return prisma.game.create({
         data: {
-            title: faker.name.findName(),
+            title: faker.name.fullName(),
             consoleId 
         }
     })

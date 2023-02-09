@@ -22,7 +22,7 @@ describe("/consoles ROUTE", () => {
             const consoles = await createFConsole();
             
             const response = await server.get("/consoles");
-            console.log(response.body);
+            
             expect(response.status).toBe(httpStatus.OK);
             expect(response.body).toEqual([
                 {
@@ -49,7 +49,7 @@ describe("/consoles ROUTE", () => {
 
         it("Should respond with status 201 and valid body; valid partition", async () => {
             const generateBody = () => ({
-                name: faker.name.findName()
+                name: faker.name.fullName()
             });
             
             const body = generateBody();
@@ -64,7 +64,7 @@ describe("/consoles ROUTE", () => {
             const consoles = await createFConsole();
             
             const response = await server.get(`/consoles/${consoles.id}`);
-            console.log(response.body);
+
             expect(response.status).toBe(httpStatus.OK);
             expect(response.body).toEqual(
                 {
@@ -74,13 +74,10 @@ describe("/consoles ROUTE", () => {
             );
         });
 
-        it("Should respond with status 404 and invalid body; invalid partition", async () => {
-            const consoles = await createFConsole();
-            
+        it("Should respond with status 404 and invalid id; invalid partition", async () => {         
             const response = await server.get(`/consoles/0`);
             expect(response.status).toBe(httpStatus.NOT_FOUND);
         });
     });
 
-})
-
+});
